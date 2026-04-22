@@ -1,111 +1,115 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import 'tailwindcss';
+@import '@fontsource/pretendard/400.css';
+@import '@fontsource/pretendard/500.css';
+@import '@fontsource/pretendard/600.css';
+@import '@fontsource/pretendard/700.css';
+@import '@fontsource/pretendard/800.css';
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+@theme {
+    /* ==========================================
+     1. Text Colors (Figma에서 가져온 그레이스케일)
+     ========================================== */
+    --color-text-black: #222124;
+    --color-text-primary: #333333; /* gray900 */
+    --color-text-secondary: #b0b0b0; /* gray500 */
+    --color-text-white: #ffffff;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    --color-gray-900: #333333;
+    --color-gray-800: #494949;
+    --color-gray-700: #5a5a5a;
+    --color-gray-600: #6d6d6d;
+    --color-gray-500: #b0b0b0;
+    --color-gray-400: #c6c6c6;
+    --color-gray-300: #dcdcdc;
+    --color-gray-200: #f2f2f2;
+    --color-gray-100: #f8f8f8;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+    /* ==========================================
+     2. Background Colors (Figma Background)
+     ========================================== */
+    --color-bg-primary: #fff7f9;
+    --color-bg-surface: #e9d6dc;
+    --color-bg-elevated: #fdecee;
+
+    --color-divider-primary: #ff6f91;
+    --color-divider-secondary: #f2c6d0;
+    --color-divider-tertiary: #eadde1;
+
+    /* ==========================================
+     3. Brand Colors (Figma Brand)
+     ========================================== */
+    --color-brand-main1-dark: #ff6f91;
+    --color-brand-main1: #ff85a2;
+    --color-brand-main1-light: #fff7f9;
+
+    --color-brand-main2: #6ec6e8;
+    --color-brand-main2-light: #8ed6ee;
+
+    --color-brand-main3: #ffd93d;
+    --color-brand-main3-light: #ffe066;
+
+    --color-brand-main4: #5ed3b6;
+
+    /* ==========================================
+     4. Status Colors (Figma Status)
+     ========================================== */
+    --color-status-success: #4caf50;
+    --color-status-warning: #ff9800;
+    --color-status-error: #ff5252;
+
+    /* ==========================================
+     5. Map Colors (Figma Map)
+     ========================================== */
+    --color-map-default: #ff6f91;
+    --color-map-selected: #ffd93d;
+    --color-map-favorite: #5ed3b6;
+
+    --font-size-headline1: 28px;
+    --font-size-headline2: 24px;
+    --font-size-subhead1: 24px;
+    --font-size-title1: 20px;
+    --font-size-title2: 18px;
+    --font-size-title3: 16px;
+    --font-size-body1: 16px;
+    --font-size-body2: 16px;
+    --font-size-body3: 16px;
+    --font-size-body4: 14px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+@layer utilities {
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+@layer components {
+    .text-headline1 {
+        @apply text-[28px] font-semibold;
+    }
+    .text-headline2 {
+        @apply text-[24px] font-semibold;
+    }
+    .text-subhead1 {
+        @apply text-[24px] font-normal;
+    }
+    .text-title1 {
+        @apply text-[20px] font-semibold;
+    }
+    .text-title2 {
+        @apply text-[18px] font-semibold;
+    }
+    .text-body1 {
+        @apply text-[16px] font-semibold;
+    }
+    .text-body2 {
+        @apply text-[16px] font-medium;
+    }
+    .text-body3 {
+        @apply text-[16px] font-normal;
+    }
+    .text-body4 {
+        @apply text-[14px] font-semibold;
+    }
 }
 
 body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+    margin: 0;
+    font-family: 'pretendard';
 }
