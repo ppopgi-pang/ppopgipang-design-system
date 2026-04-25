@@ -1,8 +1,28 @@
 {
-  "name": "ppopgipang-design-system",
-  "private": true,
+  "name": "@ppopgipang-ui/design-system",
+  "description": "뽑기팡의 디자인 시스템",
+  "license": "MIT",
+  "author": "hani0903",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/index.css"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -10,10 +30,11 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate:icons": "svgr --typescript --icon --replace-attr-values \"#000=currentColor\" --out-dir src/components/icon/components src/assets/icons && tsx scripts/generate-icon-index.ts && tsx scripts/generate-icon-map.ts"
+    "generate:icons": "svgr --typescript --icon --jsx-runtime automatic --replace-attr-values \"#000=currentColor\" --out-dir src/components/icon/components src/assets/icons && tsx scripts/generate-icon-index.ts && tsx scripts/generate-icon-map.ts"
   },
   "dependencies": {
     "@fontsource/pretendard": "^5.2.5",
+    "@tailwindcss/cli": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
@@ -44,6 +65,8 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.9",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-static-copy": "^4.1.0",
     "vitest": "^4.1.5"
   }
 }

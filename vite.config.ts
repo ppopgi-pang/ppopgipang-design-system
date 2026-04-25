@@ -1,19 +1,39 @@
 /// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vite.dev/config/
-import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
 import tailwindcss from '@tailwindcss/vite';
+import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), dts(), viteStaticCopy({ targets: [{ src: 'src/index.css', dest: '' }] })],
+    build: {
+        lib: {
+            entry: path.resolve(__dirname, 'src/index.tsx'),
+            fileName: (format) => `index.${format}.js`,
+            name: 'ppopgipang-design-system',
+        },
+        rolldownOptions: {
+            external: ['react', 'react-dom'],
+            output: {
+                globals: {
+                    react: 'React',
+                    'react-dom': 'ReactDOM',
+                },
+            },
+        },
+        sourcemap: true,
+        emptyOutDir: true,
+    },
     test: {
         projects: [
             {
@@ -21,6 +41,7 @@ export default defineConfig({
                 plugins: [
                     // The plugin will run tests for the stories defined in your Storybook config
                     // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
+
                     storybookTest({
                         configDir: path.join(dirname, '.storybook'),
                     }),
