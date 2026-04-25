@@ -74,3 +74,33 @@ export const Loading: Story = {
 export const Disabled: Story = {
     args: { disabled: true },
 };
+
+export const PrimaryBySize: Story = {
+    name: 'Primary — 사이즈별',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+            {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
+                <Button key={size} variant="primary" size={size}>
+                    {size.toUpperCase()}
+                </Button>
+            ))}
+        </div>
+    ),
+};
+
+export const PrimaryByState: Story = {
+    name: 'Primary — 상태별',
+    parameters: { controls: { disable: true } },
+    render: () => (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+            <Button variant="primary">Default</Button>
+            <Button variant="primary" loading>
+                Loading
+            </Button>
+            <Button variant="primary" disabled>
+                Disabled
+            </Button>
+        </div>
+    ),
+};
